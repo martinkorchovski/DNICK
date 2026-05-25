@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cont1{
+            background-image: url("../media/images/main_header_bg-copyright (1) (1).jpg");
+            height: 400px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="containter-fluid" id="cont1">
+    <img src="../media/images/logo-retina%20(1).png" style="margin-left: 50px; margin-top:10px;">
+    <h3 class="fw-bold text-center" style="margin-top:130px; color:white; font-size:50px;">Add</h3>
+</div>
+<div style="margin-top: 80px; width: 500px; margin-left: 150px;">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" name="naslov" class="form-control" placeholder="Title"
+            style="border-radius: 30px; height: 45px;">
+        </div>
+        <div class="mb-3">
+            <input type="date" name="datum_pocetok" class="form-control" placeholder="Date Start"
+            style="border-radius: 30px; height: 45px;">
+        </div>
+        <div class="mb-3">
+            <input type="date" name="datum_kraj" class="form-control" placeholder="Date End"
+            style="border-radius: 30px; height: 45px;">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="lokacija" class="form-control" placeholder="Location"
+            style="border-radius: 30px; height: 45px;">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="opis" class="form-control" placeholder="Description"
+            style="border-radius: 30px; height: 150px;">
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-warning" style="width: 100px; border-radius: 30px; height: 45px;">SAVE</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

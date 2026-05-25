@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #cont1{
+            background-image: url("../media/images/main_header_bg-copyright (1) (1).jpg");
+            height: 400px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="containter-fluid" id="cont1">
+    <img src="../media/images/logo-retina%20(1).png" style="margin-left: 50px; margin-top:10px;">
+    <h3 class="fw-bold text-center" style="margin-top:130px; color:white; font-size:50px;">Upcoming Events</h3>
+    <a class="btn btn-danger" style="margin-left: 830px; margin-top: 20px;" href="{% url 'add' %}">Add</a>
+</div>
+<div class="container-fluid" style="background-color: lightgrey; padding-top: 50px;">
+    {% for izlozba in izlozbi %}
+    <div class="container">
+        <div class="row p-4">
+            <div class="col col-8">
+                <p style="color: grey;">{{izlozba.datum_pocetok}} - {{izlozba.datum_kraj}}</p>
+                <h2>{{izlozba.naslov}}</h2>
+                <p>{{izlozba.lokacija}}</p>
+                <p style="font-size:24px; color: grey;">{{izlozba.opis}}</p>
+            </div>
+            <div class="col col-4">
+                <img src="{{izlozba.slika.slika.url}}" style="width: 450px; height:300px;">
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
