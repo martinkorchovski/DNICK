@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container text-center">
+    <img src="/media/images/logo2.png">
+</div>
+<div class="container-fluid mt-5">
+    <div class="row">
+        {% for kniga in knigi %}
+        <div class="col col-4">
+            <div class="card">
+                <img src="{{kniga.slika.url}}" style="border: 40px solid white">
+                <div class="card-body">
+                    {% for avtor in kniga.avtor.all %}
+                    <p class="card-text" style="text-transform: uppercase;">{{avtor.ime_prezime}}</p>
+                    {% endfor %}
+                    <a href="{% url 'edit' kniga.id %}" style="text-decoration: none; color: black;">
+                        <h3 class="card-text">{{kniga.naslov}}</h3>
+                    </a>
+                    <p class="card-text">{{kniga.cena}}$</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %} ">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container text-center">
+    <img src="/media/images/logo2.png">
+</div>
+<div class="container-fluid" style="background-image: url('/media/images/bg-breadcrumb.jpg');
+    height: 500px; width: 1480px; background-repeat: no-repeat;">
+    <h2 class="text-center" style="padding-top: 180px; font-size: 48px;">Edit</h2>
+    <!--    <img src="/media/images/bg-breadcrumb.jpg" style="width:1500px;">-->
+</div>
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3" style="width: 350px;">
+            <label>Title</label>
+            <input type="text" name="naslov" value="{{kniga.naslov}}" class="form-control" style="border: 1px solid black">
+        </div>
+        <div class="mb-3" style="width: 350px;">
+            <label>Price</label>
+            <input type="number" name="cena" value="{{kniga.cena}}" class="form-control" style="border: 1px solid black">
+        </div>
+        <div class="mb-3" style="width: 350px;">
+            <label>Description</label>
+            <input type="text" name="opis" value="{{kniga.opis}}" class="form-control" style="height: 300px; border: 1px solid black">
+        </div>
+        <button type="submit" style="background-color: black; color: white; width: 100px; padding: 5px;">SAVE</button>
+    </form>
+</div>
+</body>
+</html>
