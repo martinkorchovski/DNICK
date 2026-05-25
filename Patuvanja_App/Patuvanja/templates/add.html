@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-secondary" href="#"
+           style="margin-left: 80px; border: 2px solid blue; border-radius: 5px; padding: 5px; height: 40px;">DNICHK
+            Travel</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto gap-5" style="margin-right: 80px;">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page" href="#">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark">Add Destination</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark">Testimonial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">EN</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2>Add new Destination</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="file" name="slika" class="form-control" placeholder="Image">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="mesto" class="form-control" placeholder="Destination">
+        </div>
+        <div class="mb-3">
+            <input type="number" name="cena" class="form-control" placeholder="Price">
+        </div>
+        <div class="mb-3">
+            <input type="number" name="vremetraenje" class="form-control" placeholder="Length of trip">
+        </div>
+        <button class="btn btn-danger" type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

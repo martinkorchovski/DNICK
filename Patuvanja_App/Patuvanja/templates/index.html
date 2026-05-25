@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-secondary" href="#"
+           style="margin-left: 80px; border: 2px solid blue; border-radius: 5px; padding: 5px; height: 40px;">DNICHK
+            Travel</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto gap-5" style="margin-right: 80px;">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{% url 'add' %}">Add Destination</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark">Testimonial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">SignUp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">EN</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container text-center mt-3">
+    <p style="font-size: 30px;">Top Selling</p>
+    <h2 class="fw-bold" style="font-size: 50px;">Top Destinations</h2>
+    <div class="row g-4" style="margin-top: 50px;">
+        {% for patuvanje in patuvanja %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{{patuvanje.slika.url}}" class="card-img-top">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h5 class="card-title" style="margin-right:20px;">{{patuvanje.mesto}}</h5>
+                        <p class="card-text" style="margin-left:200px;">${{patuvanje.cena}}k</p>
+                    </div>
+                    <p style="margin-right: 295px;">{{patuvanje.vremetraenje}} Days Trip</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
