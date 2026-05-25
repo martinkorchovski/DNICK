@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-danger" href="#">Cakery&Bakery</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add' %}">Add</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid" style="background-color: red; height: 600px;">
+    <div class="row">
+        <div class="col col-6 text-light" style="margin-top: 180px; padding-left: 200px;">
+            <h3 style="font-size: 40px; width:600px;">Explore the wonderland of tastes!</h3>
+            <p>Assignment for HCI Exam in January 2025</p>
+            <a class="btn btn-light">Get Started</a>
+            <a class="btn text-light" style="border: 1px solid white;">Learn More</a>
+        </div>
+        <div class="col col-6" style="margin-top: 100px;">
+            <img src="../media/images/img.png"
+                 style="border-radius: 10px; border: 1px solid white; width: 630px; height: 400px;">
+        </div>
+    </div>
+</div>
+<div class="container mt-3" style="width: 680px;">
+    <p class="text-center" style="font-size: 24px;">"Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Consequatur corporis doloribus facere laudantium
+        provident repudiandae sint temporibus! Assumenda error et, incidunt maxime nobis obcaecati."</p>
+    <div class="row" style="margin-top: 50px; margin-left:140px;">
+        <div class="col col-1">
+            <img src="../media/images/avatar1.png" style="width: 30px; height: 30px;">
+        </div>
+        <div class="col col-11">
+            <p class="fw-bold d-flex" style="font-size: 20px;">John Doe / CEO, Cakery&Bakery</p>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="text-center">
+        <p class="fw-bold text-danger" style="font-size: 36px;">Products</p>
+        <p style="font-size: 24px;">Add more products in the edit form!</p>
+    </div>
+    <div class="row g-4" style="margin-top: 50px;">
+        {% for torta in torti %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{{torta.slika.url}}" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="card-title">{{torta.ime}}</h4>
+                    <p class="card-text">{{torta.opis}}</p>
+                </div>
+                <p class="card-text fw-bold mt-3" style="margin-left: 20px; padding-bottom:30px;">{{torta.pekar.ime}} {{torta.pekar.prezime}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid" style="margin-top: 120px; height: 50px; background-color:red; ">
+        <a class="navbar-brand text-light" href="#" style="padding-left: 180px;">Copyright HCI 2025</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto" style="padding-right: 180px;">
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="#">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light">Terms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

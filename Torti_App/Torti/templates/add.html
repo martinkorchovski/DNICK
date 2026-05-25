@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-danger" href="#">Cakery&Bakery</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Add</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-6 offset-3 bg-light p-5 rounded">
+        <h3 class="text-center fw-bold text-danger">Add new Cake</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Name</label>
+                <input type="text" name="ime" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="mb-3">
+                <label>Price</label>
+                <input type="number" name="cena" class="form-control" placeholder="Enter price">
+            </div>
+            <div class="mb-3">
+                <label>Weight</label>
+                <input type="number" name="tezina" class="form-control" placeholder="Enter weight">
+            </div>
+            <div class="mb-3">
+                <label>Description</label>
+                <input type="text" name="opis" class="form-control" placeholder="Enter description">
+            </div>
+            <div class="mb-3">
+                <label>Choose an image</label>
+                <input type="file" name="slika" class="form-control">
+            </div>
+            <button class="btn btn-danger" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid" style="margin-top: 120px; height: 50px; background-color:red; ">
+        <a class="navbar-brand text-light" href="#" style="padding-left: 180px;">Copyright HCI 2025</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto" style="padding-right: 180px;">
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="#">Privacy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light">Terms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
