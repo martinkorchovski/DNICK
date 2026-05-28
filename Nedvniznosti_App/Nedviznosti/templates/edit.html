@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <img src="/media/images/logo.png" style="height: 50px;">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link" aria-current="page" href="#">About</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link">Services</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link" href="#">Contacts</a>
+                </li>
+                <button class="btn" style="background-color: black; color: white;">Contact Us</button>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col" style="margin-top: 150px;">
+            <h2 style="font-size: 42px;">EDIT: {{nedviznost.ime}}</h2>
+        </div>
+        <div class="col">
+            <img src="/media/images/house3.jpg">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="ime" value="{{nedviznost.ime}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Desctiption</label>
+            <input type="text" name="opis" value="{{nedviznost.opis}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Characteristics</label>
+            <select name="karakteristiki" multiple class="form-control">
+                {% for k in site_karakteristiki %}
+                <option value="{{k.id}}"
+                        {% if k in nedviznost.karakteristiki.all %} selected {% endif %}>
+                    {{k.ime}}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Location</label>
+            <input type="text" name="lokacija" value="{{nedviznost.lokacija}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Area (in sq.meters)</label>
+            <input type="text" name="povrsina" value="{{nedviznost.povrsina}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Date Announced for Sale</label>
+            <input type="date" name="datum" value="{{nedviznost.datum|date:'Y-m-d'}}" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Photo</label>
+            <div class="d-flex align-items-center gap-2">
+                <input type="file" name="slika">
+                {% if nedviznost.slika %}
+                <span>{{ nedviznost.slika }}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" name="dali_e_rezervirana" class="form-check-input"
+                   {% if nedviznost.dali_e_rezervirana %} checked {% endif %}>
+            <label class="form-check-label">Is this a reserve?</label>
+        </div>
+        <div class="form-check mb-3">
+            <input type="checkbox" name="dali_e_prodadena" class="form-check-input"
+                   {% if nedviznost.dali_e_prodadena %} checked {% endif %}>
+            <label class="form-check-label">Has this location ever been sold?</label>
+        </div>
+        <button type="submit" class="form-control bg-dark text-light">Submit</button>
+    </form>
+</div>
+</body>
+</html>

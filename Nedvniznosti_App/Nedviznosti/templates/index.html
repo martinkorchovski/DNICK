@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <img src="/media/images/logo.png" style="height: 50px;">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link" aria-current="page" href="#">About</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link">Services</a>
+                </li>
+                <li class="nav-item" style="padding-right:60px;">
+                    <a class="nav-link" href="#">Contacts</a>
+                </li>
+                <button class="btn" style="background-color: black; color: white;">Contact Us</button>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col" style="margin-top: 150px;">
+            <h2 style="font-size: 42px;">Architecture</h2>
+            <h2 style="color: grey; font-size: 42px;">Bureau</h2>
+        </div>
+        <div class="col">
+            <img src="/media/images/house3.jpg">
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top: 30px;">
+    <div class="row">
+        <div class="col col-6">
+            <img src="/media/images/house4.jpg">
+        </div>
+        <div class="col" style="margin-top: 200px; margin-left: 70px;">
+            <p style="width: 300px; color: gray;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center">We offer variety of projects</h2>
+    <div class="row mt-5 text-center">
+        <div class="col col-4">
+            <p style="border-bottom: 2px solid black; padding-bottom: 10px;">All houses</p>
+        </div>
+        <div class="col col-4">
+            <p style="border-bottom: 2px solid grey; padding-bottom: 10px;">Stone houses</p>
+        </div>
+        <div class="col col-4">
+            <p style="border-bottom: 2px solid grey; padding-bottom: 10px;">Frame houses</p>
+        </div>
+
+    </div>
+    <div class="row">
+        {% for n in nedviznosti %}
+        <div class="col col-4">
+            <div class="card mt-3">
+                <img src="{{n.slika.url}}" class="card-img-top">
+                <div class="card-body m-3">
+                    <h3>{{n.ime}}</h3>
+                    <h5 class="mt-3" style="color: grey; border-bottom: 2px solid gray; padding-bottom: 15px;">Area:
+                        <span style="margin-left: 215px;">{{n.povrsina}}spm</span></h5>
+                    <h5 class="mt-3" style="color: grey;">Price:
+                        <span style="margin-left: 200px;">{{n.vkupna_cena}}$</span>
+                    </h5>
+                    <a class="btn btn-dark mt-3" style="width: 80px;" href="{% url 'edit' n.id %}">Edit</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
