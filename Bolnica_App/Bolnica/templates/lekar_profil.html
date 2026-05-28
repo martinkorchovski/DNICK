@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container-fluid bg-success" style="height: 40px;">
+    <p class="fw-bold text-light" style="padding-top: 7px;">Hospital Doctors System</p>
+</div>
+
+<div class="container text-center mt-4 bg-success text-light py-4 rounded">
+    <h2 class="fw-bold" style="font-size: 42px;">{{ lekar.ime_prezime }}</h2>
+    <p style="font-size: 15px;">Specialty: {{ lekar.specijalnost }} | Institution: {{ lekar.institucija }}</p>
+    <p style="font-size: 13px;">Email: {{ lekar.email }} | Phone: {{ lekar.tel_broj }}</p>
+</div>
+
+<div class="container mt-4">
+    <h4 class="text-center mb-3">Appointments Overview</h4>
+    <div class="row">
+
+        <div class="col-4">
+            <h6 class="text-center mb-3">Past Appointments</h6>
+            {% for m_p in minati_pregledi %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <strong>{{ m_p.tip }}</strong>
+                    <p class="mb-1 text-muted" style="font-size: 13px;">{{ m_p.opis_simptomi }}</p>
+                    <small>Date: {{ m_p.termin }}</small><br>
+                    <small>Patient: {{ m_p.patient }}</small>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center text-muted">No past appointments</p>
+            {% endfor %}
+        </div>
+
+        <div class="col-4">
+            <h6 class="text-center mb-3">Today's Appointments</h6>
+            {% for d_p in denesni_pregledi %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <strong>{{ d_p.tip }}</strong>
+                    <p class="mb-1 text-muted" style="font-size: 13px;">{{ d_p.opis_simptomi }}</p>
+                    <small>Time: {{ d_p.termin|time:"H:i" }}</small><br>
+                    <small>Patient: {{ d_p.patient }}</small>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center text-muted">No appointments today</p>
+            {% endfor %}
+        </div>
+
+        <div class="col-4">
+            <h6 class="text-center mb-3">Future Appointments</h6>
+            {% for i_p in idni_pregledi %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <strong>{{ i_p.tip }}</strong>
+                    <p class="mb-1 text-muted" style="font-size: 13px;">{{ i_p.opis_simptomi }}</p>
+                    <small>Scheduled for: {{ i_p.termin }}</small><br>
+                    <small>Patient: {{ i_p.patient }}</small>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center text-muted">No future appointments</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container mt-4" style="max-width: 600px;">
+    <h4 class="text-center mb-3">Add a New Appointment</h4>
+    <div class="card p-4 shadow-sm">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea name="opis_simptomi" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status:</label>
+                <select name="status" class="form-control">
+                    <option value="zakazan">Zakazan</option>
+                    <option value="vo_tek">Vo tek</option>
+                    <option value="zavrsen">Zavrsen</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Datetime:</label>
+                <input type="datetime-local" name="termin" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Note:</label>
+                <textarea name="zabeleska" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Patient:</label>
+                <select name="patient" class="form-control">
+                    <option value="">---------</option>
+                    {% for pacient in pacienti %}
+                    <option value="{{ pacient.id }}">{{ pacient.ime_prezime }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Create Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container-fluid bg-dark text-light text-center mt-5 py-3">
+    <small>© Hospital Doctors System</small>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid bg-success" style="height: 40px;">
+    <p class="fw-bold text-light" style="padding-top: 7px;">Hospital Doctors System</p>
+</div>
+<div class="container text-center mt-5 bg-success text-light pt-5" style="height: 200px;">
+    <h2 class="fw-bold" style="font-size: 42px;">Our Trusted Doctors</h2>
+    <p style="font-size: 20px;">Browse our external collaborators by specialty. Learn more about their medical
+        background, and view their current
+        and upcoming appointments.</p>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center text-success">Cardiologists</h2>
+    <div class="row mt-5">
+        {% for kardiolog in kardiolozi %}
+        <div class="col col-4">
+            <div class="card text-center">
+                <img src="{{kardiolog.slika.url}}" class="card-img-top mt-3 rounded-circle mx-auto d-block"
+                     style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <p class="fw-bold">{{kardiolog.ime_prezime}}</p>
+                    <p class="bg-success text-light fw-bold"
+                       style="width: 110px; margin-left: 140px; border-radius: 10px;">Cardiologist</p>
+                    <p><span class="fw-bold">Institution:</span> {{kardiolog.institucija}}</p>
+                    <p><span class="fw-bold">Email: </span>{{kardiolog.email}}</p>
+                    <p><span class="fw-bold">Phone: </span>{{kardiolog.tel_broj}}</p>
+                    <a class="btn btn-light text-success" href="{% url 'lekar' kardiolog.id %}"
+                       style="border: 1px solid green">View Profile</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center text-success">Dermatologists</h2>
+    <div class="row mt-5">
+        {% for dermatolog in dermatolozi %}
+        <div class="col col-4">
+            <div class="card text-center">
+                <img src="{{dermatolog.slika.url}}" class="card-img-top mt-3 rounded-circle mx-auto d-block"
+                     style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <p class="fw-bold">{{dermatolog.ime_prezime}}</p>
+                    <p class="bg-success text-light fw-bold"
+                       style="width: 120px; margin-left: 140px; border-radius: 10px;">Dermatologist</p>
+                    <p><span class="fw-bold">Institution:</span> {{dermatolog.institucija}}</p>
+                    <p><span class="fw-bold">Email: </span>{{dermatolog.email}}</p>
+                    <p><span class="fw-bold">Phone: </span>{{dermatolog.tel_broj}}</p>
+                    <a class="btn btn-light text-success" href="{% url 'lekar' dermatolog.id %}"
+                       style="border: 1px solid green">View Profile</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container mt-5">
+    <h2 class="text-center text-success">Neurologists</h2>
+    <div class="row mt-5">
+        {% for nevrolog in nevrolozi %}
+        <div class="col col-4">
+            <div class="card text-center">
+                <img src="{{nevrolog.slika.url}}" class="card-img-top mt-3 rounded-circle mx-auto d-block"
+                     style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <p class="fw-bold">{{nevrolog.ime_prezime}}</p>
+                    <p class="bg-success text-light fw-bold"
+                       style="width: 120px; margin-left: 140px; border-radius: 10px;">Neurologist</p>
+                    <p><span class="fw-bold">Institution:</span> {{nevrolog.institucija}}</p>
+                    <p><span class="fw-bold">Email: </span>{{nevrolog.email}}</p>
+                    <p><span class="fw-bold">Phone: </span>{{nevrolog.tel_broj}}</p>
+                    <a class="btn btn-light text-success" href="{% url 'lekar' nevrolog.id %}"
+                       style="border: 1px solid green">View Profile</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container-fluid bg-dark text-center mt-5" style="height: 40px;">
+    <p class="fw-bold text-light" style="padding-top: 7px;">© Hospital Doctors System</p>
+</div>
+</body>
+</html>
