@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-dark" href="#">Eventualy</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <a class="nav-link" aria-current="page" href="{% url 'add' %}">Ask For Event</a>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <a class="nav-link" aria-current="page" href="#">Services</a>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <a class="nav-link" aria-current="page" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <a class="nav-link" aria-current="page" href="#">News</a>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <img src="../media/images/Screenshot 2026-05-29 225858.png" style="width: 30px; height: 30px;"/>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <img src="../media/images/Screenshot 2026-05-29 225913.png" style="width: 30px; height: 30px;"/>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <img src="../media/images/Screenshot 2026-05-29 225943.png" style="width: 30px; height: 30px;"/>
+                </li>
+                <li class="nav-item text-decoration-underline" style="padding-right:25px;">
+                    <img src="../media/images/linkedin-icon-1-logo-png-transparent.png"
+                         style="width: 30px; height: 30px;"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid"
+     style="background-image: url('/media/images/mbr-1920x1277.jpg'); height: 500px; background-position: 0px -390px; background-repeat: no-repeat;">
+    <div style="padding-top: 60px; color: white; padding-left: 10px;">
+        <p>2025-21</p>
+        <p>THE BEST SOLUTIONS FOR OUR CLIENTS</p>
+        <p class="fw-bold" style="font-size: 60px; width: 800px;">We create exclusive events using modern technologies and extensive features.</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-3">
+        {% for nastan in nastani %}
+            <div class="col col-4 text-center" style="width: 400px;">
+                <img src="{{nastan.slika.url}}" style="width: 300px; height: 250px;" class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-text">{{nastan.ime}}</h2>
+                    <p class="card-text">Date: {{nastan.datum}}<p/>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
